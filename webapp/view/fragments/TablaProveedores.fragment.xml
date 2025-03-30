@@ -1,0 +1,90 @@
+<c:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:c="sap.ui.core"
+    xmlns:u="sap.ui.unified"
+    
+    
+
+>
+    <Table
+        inset="false"
+        items="{
+            path: 'ListadoProveedores>/'
+        }">
+        <columns>
+            <Column header="Column Header 1" press="onSortBy">
+                <Text text="{i18n>idProveedor}" />
+            </Column>
+            <Column>
+                <Text text="{i18n>proveedorN}" />
+            </Column>
+            <Column>
+                <Text text="{i18n>contactoP}" />
+            </Column>
+            <Column>
+                <Text text="{i18n>contactoT}" />
+            </Column>
+            <Column>
+                <Text text="{i18n>direccionC}" />
+            </Column>
+            <Column>
+                <Text text="{i18n>ciudadP}" />
+            </Column>
+            <Column>
+                <Text text="{i18n>regionP}" />
+            </Column>
+             <Column>
+                <Text text="{i18n>cPostal}" />
+            </Column>
+             <Column>
+                <Text text="{i18n>paisP}" />
+            </Column>
+             <Column>
+                <Text text="{i18n>telefonoP}" />
+            </Column>
+             <Column>
+                <Text text="{i18n>faxP}" />
+            </Column>
+             <Column>
+                <Text text="{i18n>paginaP}" />
+            </Column>
+             <!--<Column>
+                <Text text="{i18n>productoP}" />
+            </Column>-->
+            
+        </columns>
+        <items>
+            <ColumnListItem  vAlign="Middle" type="Active" press="onItemPress">
+                <cells>
+                    <ObjectIdentifier
+                        title="{ListadoProveedores>SupplierID}"
+                        />
+                    <Text
+                        text="{ListadoProveedores>CompanyName}" />
+                    <Text
+                        text="{ListadoProveedores>ContactName}" />
+                    <Text
+                        text="{ListadoProveedores>ContactTitle}" />
+                    <Text
+                        text="{ListadoProveedores>Address}" />
+                    <Text
+                        text="{ListadoProveedores>City}" />
+                    <Text
+                        text="{ListadoProveedores>Region}" />
+                    <Text
+                        text="{ListadoProveedores>PostalCode}" />
+                    <Text
+                        text="{ListadoProveedores>Country}" />
+                    <Text
+                        text="{ListadoProveedores>Phone}" />
+                    <Text
+                        text="{ListadoProveedores>Fax}" />
+                    <Text
+                        text="{ListadoProveedores>HomePage}" />
+                    <Text
+                        text="{ListadoProveedores>Products}" />
+                </cells>
+            </ColumnListItem>
+        </items>
+    </Table>
+</c:FragmentDefinition>
