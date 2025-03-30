@@ -4,12 +4,12 @@
 	xmlns:f="sap.ui.layout.form"
 	xmlns:core="sap.ui.core"
     xmlns:smartTable="sap.ui.comp.smarttable">
-    <Page id="pageDetail" title="{i18n>titleDetail}">
-    <VBox id="dhb_01">
+    <Page id="pageDetail">
+    <VBox>
 		<f:SimpleForm id="SimpleFormDisplay354"
 			editable="false"
 			layout="ResponsiveGridLayout"
-			title="{i18n>Information}"
+			title="{i18n>informacion}"
 			labelSpanXL="3" labelSpanL="3"
 			labelSpanM="3" labelSpanS="12"
 			adjustLabelSpan="false" emptySpanXL="4"
@@ -17,30 +17,44 @@
             columnsXL="1" columnsL="1" columnsM="1"
 			singleContainerFullSize="false" >
 			<f:content>
-				<Label id="ld_01" text="{i18n>ProductName}" />
-				<Text id="nameText" text="{ProductName}" />
+				<Label text="{i18n>proveedorN}" />
+				<Text id="nameText" text="{CompanyName}" />
 
-				<Label id="ld_02" text="{i18n>QuantityPerUnit}" />
-				<Text id="td_01" text="{Street} {QuantityPerUnit}" />
+				<Label text="{i18n>direccionC}" />
+				<Text text="{Street} {Address}" />
 
-				<Label id="ld_03" text="{i18n>UnitPrice}" />
-				<Text id="td_02" text="{UnitPrice}" />
+				<Label text="{i18n>regionP}" />
+				<Text text="{Region}" />
 
-				<Label id="ld_04" text="{i18n>UnitsInStock}" />
-				<Text id="countryText" text="{UnitsInStock}" />
+                <Label text="{i18n>ciudadP}" />
+				<Text text="{City}" />
+
+				<Label text="{i18n>paisP}" />
+				<Text id="countryText" text="{Country}" />
+
+                <Label text="{i18n>telefonoP}" />
+				<Text  text="{Phone}" />
+
+                <Label text="{i18n>faxP}" />
+				<Text  text="{Fax}" />
+
+                <Label text="{i18n>cPostal}" />
+				<Text  text="{PostalCode}" />
+
+                <Label text="{i18n>paginaP}" />
+				<Text  text="{HomePage}" />
 			</f:content>
 		</f:SimpleForm>
 
         <smartTable:SmartTable
-            id="ST_ORDER_D"
-            entitySet="Order_Details"
-            tableBindingPath="Order_Details"
-            initiallyVisibleFields="OrderID,ProductID,UnitPrice,Quantity,Discount"
+            entitySet="Products"
+            tableBindingPath="Products"
+            initiallyVisibleFields="ProductID,ProductName,SupplierID,CategoryID,QuantityPerUnit, UnitPrice,UnitsInStock,UnitsInOrder,ReorderLevel,Discontinued,Category,Order_details,Supplier"
             tableType="ResponsiveTable"
             enableExport="true"
             useVariantManagement="false"
             useTablePersonalisation="true"
-            header="{i18n>headerOrderDetails}"
+            header="{i18n>detalleProducto}"
             showRowCount="true"
             showFullScreenButton="true"
             enableAutoBinding="true"

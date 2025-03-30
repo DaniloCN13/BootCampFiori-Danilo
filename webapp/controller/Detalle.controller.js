@@ -12,7 +12,7 @@ sap.ui.define([
 
         _onObjectMatched: function (oEvent) {
             // Obtener el ProductID de la URL y enlazar el contexto
-            let sSupplierID = oEvent.getParameter("arguments").ProductID;
+            let sSupplierID = oEvent.getParameter("arguments").SupplierID;
 
 
             this.getView().bindElement({
