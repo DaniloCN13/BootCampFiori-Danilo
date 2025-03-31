@@ -39,28 +39,30 @@ sap.ui.define([
         },
 
         onSelectionChange: async function (oEvent) {
-            /*let oFilter = [];
+            let oFilter = [];
             let oSource = oEvent.getSource()
             let oTable = this.getView().byId("idSupplier")
             let oBinding = oTable.getBinding("items")
 
             if(oSource.getValue()){
-                oFilter = new Filter("SupplierID", FilterOperator.EQ, oSource.getValue()) 
+                oFilter = new Filter("SupplierID", FilterOperator.EQ, oSource.getValue())   
             }
             oBinding.filter(oFilter);
-            */
+            
         },
         onSelectionChange1: async function (oEvent) {
-            /*let oFilter = [];
+            let oFilter = [];
             let oSource = oEvent.getSource()
             let oTable = this.getView().byId("idSupplier")
             let oBinding = oTable.getBinding("items")
 
-            if(oSource.getValue()){
-                oFilter = new Filter("CompanyName", FilterOperator.EQ, oSource.getValue()) 
+            if (oSource.getValue()) {
+                oFilter = new Filter("CompanyName", FilterOperator.EQ, oSource.getValue());
+            } else {
+                oBinding.filter([])
             }
+        
             oBinding.filter(oFilter);
-          */  
         },
         
     });
