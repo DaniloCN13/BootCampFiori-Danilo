@@ -59,22 +59,22 @@
                     </Toolbar>
                 </smartTable:customToolbar>
             </smartTable:SmartTable>
-            <Dialog id="myDialog"  title="{i18n>productoN}">
-                <content>
-                    <VBox>
-                        <Label text="{i18n>nombreP}" />
-                        <Input id="productNameInput" />
-                        <Label text="{i18n>precioP}" />
-                        <Input id="productPriceInput" type="Number" />
-                        <Label text="{i18n>cantidadP}" />
-                        <Input id="productStockInput" type="Number" />
-                    </VBox>
-                </content>
-                <buttons>
-                    <Button text="Guardar" press="onSaveProduct" />
-                    <Button text="Cerrar" press="onCloseDialog" />
-                </buttons>
-            </Dialog>
+            <Dialog id="myDialog" title="{i18n>productoN}">
+              <content>
+                  <VBox>
+                      <Label text="{i18n>nombreP} *" class="requiredLabel" />
+                      <Input id="productNameInput" required="true" />
+                      <Label text="{i18n>precioP} *" class="requiredLabel" />
+                      <Input id="productPriceInput" type="Number" required="true" />
+                      <Label text="{i18n>cantidadP} *" class="requiredLabel" />
+                      <Input id="productStockInput" type="Number" required="true" />
+                  </VBox>
+              </content>
+    <buttons>
+        <Button text="{i18n>guardar}" press="onSaveProduct" />
+        <Button text="{i18n>cerrar}" press="onCloseDialog" />
+    </buttons>
+</Dialog>
         </VBox>
     </Page>
 </mvc:View>

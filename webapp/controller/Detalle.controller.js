@@ -75,16 +75,53 @@ sap.ui.define([
             const productStock = this.byId("productStockInput").getValue();
 
          
-            console.log("Producto Guardado:", {
-                Name: productName,
-                Price: productPrice,
-                Stock: productStock
-            });
+           // Validar campos obligatorios
+                if (!productName) {
+                    MessageToast.show(this.getView().getModel("i18n").getResourceBundle().getText(`Error: ${i18n>precioP}`)); // Mensaje de error
+                    return; // Salir si hay error
+                }
+                if (!productPrice) {
+                    MessageToast.show(this.getView().getModel("i18n").getResourceBundle().getText("errorPrecioRequerido")); // Mensaje de error
+                    return; // Salir si hay error
+                }
+                if (!productStock) {
+                    MessageToast.show(this.getView().getModel("i18n").getResourceBundle().getText("errorCantidadRequerida")); // Mensaje de error
+                    return; // Salir si hay error
+                }
 
             MessageToast.show(`Producto guardado: ${productName}, Precio: ${productPrice}, Stock: ${productStock}`)
 
           
             this.onCloseDialog();
+        },
+        onRowSelectionChange: function(oEvent) {
+            // Obtener la fila seleccionada
+            const oSelectedItem = oEvent.getParameter("rowContext");
+            if (oSelectedItem) {
+                const oProduct = oSelectedItem.getObject(); // Obtener los datos del producto
+        
+                // Aquí puedes mostrar los detalles del producto en el Diálogo
+                this.showProductDetails(oProduct);
+            }
+        },
+        
+        showProductDetails: function(oProduct) {
+            const oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
+            
+            // Establecer los valores en los campos del diálogo, si ya lo tienes definido en tu HTML
+            const oDialog = this.byId("myDialog");
+            
+            this.byId("productNameInput").setValue(oProduct.ProductName);
+            this.byId("productPriceInput").setValue(oProduct.UnitPrice);
+            this.byId("productStockInput").setValue(oProduct.UnitsInStock);
+        
+            // Abrir el diálogo con los detalles
+            if (!oDialog) {
+                // (Crear el diálogo aquí o asegurarte que esté definido)
+                this.onOpenDialog(); // Llama a una función que abra el diálogo
+            } else {
+                oDialog.open(); // Si ya existe, abrirlo
+            }
         }
     });
 });

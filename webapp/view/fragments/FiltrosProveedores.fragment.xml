@@ -1,0 +1,80 @@
+<c:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:c="sap.ui.core"
+>
+    <HBox class="sapUiSmallMargin">
+        <HBox>
+            <VBox class="sapUiSmallMarginEnd">
+                <Label
+                    labelFor="comboboxID"
+                    text="{i18n>idProveedor}"
+                />
+                <ComboBox
+                    id="comboboxID"
+                    selectionChange=".onSelectionChange"
+                    selectedKey="{LocalDataModel>/selectedKey}"
+                    showClearIcon="true"
+                    showSecondaryValues="true"
+                    items="{
+                        path: '/Suppliers',
+                        sorter: { path: 'SupplierID' }
+                    }"
+                >
+                    <c:Item
+                        key="{SupplierID}"
+                        text="{SupplierID}"
+                    />
+                </ComboBox>
+            </VBox>
+            <VBox class="sapUiSmallMarginEnd">
+                <Label
+                    labelFor="comboboxID"
+                    text="{i18n>proveedorN}"
+                />
+                <ComboBox
+                    id="comboboxID1"
+                    selectionChange=".onSelectionChange1"
+                    selectedKey="{LocalDataModel>/selectedKey}"
+                    showClearIcon="true"
+                    showSecondaryValues="true"
+                    items="{
+                        path: '/Suppliers',
+                        sorter: { path: 'SupplierID' }
+                    }"
+                >
+                    <c:Item
+                        key="{SupplierID}"
+                        text="{CompanyName}"
+                    />
+                </ComboBox>
+            </VBox>
+            <VBox class="sapUiSmallMarginEnd">
+                <Label
+                    labelFor="multiInputCiudadPais"
+                    text="{i18n>ciudadPais}"
+                />
+                <MultiInput
+                    id="multiInputCiudadPais"
+                    selectedKey="{LocalDataModel>/selectedItem}"
+                    showValueHelp="false"
+                    showClearIcon="true"
+                    tokenUpdate=".onTokenUpdateCiudadPais"
+                    suggestionItems="{
+                        path: '/Suppliers',
+                        sorter: { path: 'SupplierID' }
+                    }"
+                >
+                    <c:Item
+                        key="{Country} {City}"
+                        text="{Country} - {City}"
+                    />
+                </MultiInput>
+            </VBox>
+        </HBox>
+        <Button
+            text="{i18n>consulta}"
+            press="onPress"
+            class="sapUiSmallMarginTop"
+        />
+    </HBox>
+</c:FragmentDefinition>

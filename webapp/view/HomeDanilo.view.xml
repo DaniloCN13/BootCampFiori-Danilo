@@ -6,79 +6,10 @@
     xmlns:t="sap.ui.table"
 >
     <Page title="{i18n>title}">
-        <HBox class="sapUiSmallMargin">
-            <HBox>
-                <VBox class="sapUiSmallMarginEnd">
-                    <Label
-                        labelFor="comboboxID"
-                        text="{i18n>idProveedor}"
-                    />
-                    <ComboBox
-                        id="comboboxID"
-                        selectionChange=".onSelectionChange"
-                        selectedKey="{LocalDataModel>/selectedKey}"
-                        showClearIcon = "true"
-                        showSecondaryValues= "true"
-                        items="{
-					path: '/Suppliers',
-					sorter: { path: 'SupplierID' }
-				}"
-                    >
-                        <c:Item
-                            key="{SupplierID}"
-                            text="{SupplierID}"
-                        />
-                    </ComboBox>
-                </VBox>
-                <VBox class="sapUiSmallMarginEnd">
-                    <Label
-                        labelFor="comboboxID"
-                        text="{i18n>proveedorN}"
-                    />
-                    <ComboBox
-                        selectionChange=".onSelectionChange1"
-                        selectedKey="{LocalDataModel>/selectedKey}"
-                        showClearIcon = "true"
-                        showSecondaryValues= "true"
-                        items="{
-					path: '/Suppliers',
-					sorter: { path: 'SupplierID' }
-				}"
-                    >
-                        <c:Item
-                            key="{SupplierID}"
-                            text="{CompanyName}"
-                        />
-                    </ComboBox>
-                </VBox>
-                <VBox class="sapUiSmallMarginEnd">
-                    <Label
-                        labelFor="comboboxID"
-                        text="{i18n>ciudadPais}"
-                    />
-                    <MultiInput
-                        showValueHelp="false"
-                        selectedKey="{LocalDataModel>/selectedItem}"
-                        showClearIcon = "true"
-                        tokenUpdate=""
-                        suggestionItems="{
-                                        path: '/Suppliers',
-                                        sorter: { path: 'SupplierID' }
-                                    }"
-                    >
-                        <c:Item
-                            key="{Country} { City}"
-                            text="{Country} - {City}"
-                        />
-                    </MultiInput>
-                </VBox>
-            </HBox>
-                <Button
-                    text="{i18n>consulta}"
-                    press="onPress"
-                    class="sapUiSmallMarginTop"
-                />            
-        </HBox>
+        <c:Fragment
+            fragmentName="com.bootcamp.sapui5.project.view.fragments.FiltrosProveedores"
+            type="XML"
+        />
         <VBox class="sapUiSmallMargin">
             <c:Fragment
                 fragmentName="com.bootcamp.sapui5.project.view.fragments.TablaProveedores"

@@ -64,6 +64,36 @@ sap.ui.define([
         
             oBinding.filter(oFilter);
         },
+        onTokenUpdateCiudadPais: function (oEvent) {
+            let aTokens = oEvent.getSource().getTokens();
+            let aFilters = [];
+        
+            aTokens.forEach(function (oToken) {
+                let sKey = oToken.getKey();
+                let parts = sKey.split(" ");
+                if (parts.length >= 2) {
+                    aFilters.push(new Filter("Country", FilterOperator.Contains, parts[0]));
+                    aFilters.push(new Filter("City", FilterOperator.Contains, parts[1]));
+                }
+            });
+        
+            let oTable = this.getView().byId("idSupplier");
+            let oBinding = oTable.getBinding("items");
+            let oMultiInput = this.getView().byId("multiInputCiudadPais");
+        
+            if (aFilters.length > 0) {
+                let oFinalFilter = new Filter({
+                    filters: aFilters,
+                    and: false
+                });
+                oBinding.filter(oFinalFilter);
+            } else {
+                oBinding.filter([]);
+                oMultiInput.removeAllTokens();
+            }
+        
+        
+},
         
     });
 });
