@@ -28,13 +28,13 @@
                     <Label text="{i18n>paisP}" />
                     <Text id="countryText" text="{Country}" />
                     <Label text="{i18n>telefonoP}" />
-                    <Text  text="{Phone}" />
+                    <Text text="{Phone}" />
                     <Label text="{i18n>faxP}" />
-                    <Text  text="{Fax}" />
+                    <Text text="{Fax}" />
                     <Label text="{i18n>cPostal}" />
-                    <Text  text="{PostalCode}" />
+                    <Text text="{PostalCode}" />
                     <Label text="{i18n>paginaP}" />
-                    <Text  text="{HomePage}" />
+                    <Text text="{HomePage}" />
                 </f:content>
             </f:SimpleForm>
             <smartTable:SmartTable
@@ -55,15 +55,23 @@
                 <smartTable:customToolbar>
                     <Toolbar>
                         <ToolbarSpacer/>
-                        <Button text="Abrir Diálogo" press="onOpenDialog" />
+                        <Button icon="sap-icon://add" text="{i18n>agregarP}" press="onOpenDialog" />
                     </Toolbar>
                 </smartTable:customToolbar>
             </smartTable:SmartTable>
-            <Dialog id="myDialog" title="Mi Diálogo">
+            <Dialog id="myDialog"  title="{i18n>productoN}">
                 <content>
-                    <Text text="Contenido del diálogo." />
+                    <VBox>
+                        <Label text="{i18n>nombreP}" />
+                        <Input id="productNameInput" />
+                        <Label text="{i18n>precioP}" />
+                        <Input id="productPriceInput" type="Number" />
+                        <Label text="{i18n>cantidadP}" />
+                        <Input id="productStockInput" type="Number" />
+                    </VBox>
                 </content>
                 <buttons>
+                    <Button text="Guardar" press="onSaveProduct" />
                     <Button text="Cerrar" press="onCloseDialog" />
                 </buttons>
             </Dialog>
