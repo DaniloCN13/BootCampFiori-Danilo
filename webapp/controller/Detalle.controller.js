@@ -1,7 +1,10 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "com/bootcamp/sapui5/project/utils/HomeHelper"
-], (Controller, HomeHelper) => {
+    "com/bootcamp/sapui5/project/utils/HomeHelper",
+    "sap/m/Dialog",
+    "sap/m/Text",
+    "sap/m/Button"
+], (Controller, HomeHelper, Dialog, Text, Button) => {
     "use strict";
 
     return Controller.extend("com.bootcamp.sapui5.project.controller.Detalle", {
@@ -11,9 +14,7 @@ sap.ui.define([
         },
 
         _onObjectMatched: function (oEvent) {
-            // Obtener el ProductID de la URL y enlazar el contexto
             let sSupplierID = oEvent.getParameter("arguments").SupplierID;
-
 
             this.getView().bindElement({
                 path: "/Suppliers(" + sSupplierID + ")",
@@ -22,5 +23,19 @@ sap.ui.define([
                 }
             });
         },
+
+        onOpenDialog: function () {
+            let oDialog = this.byId("myDialog");
+            if (oDialog) {
+                oDialog.open();
+            }
+        },
+
+        onCloseDialog: function () {
+            let oDialog = this.byId("myDialog");
+            if (oDialog) {
+                oDialog.close();
+            }
+        }
     });
 });

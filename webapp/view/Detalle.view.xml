@@ -1,69 +1,72 @@
 <mvc:View controllerName="com.bootcamp.sapui5.project.controller.Detalle"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-	xmlns:f="sap.ui.layout.form"
-	xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
     xmlns:smartTable="sap.ui.comp.smarttable">
     <Page id="pageDetail">
-    <VBox>
-		<f:SimpleForm id="SimpleFormDisplay354"
-			editable="false"
-			layout="ResponsiveGridLayout"
-			title="{i18n>informacion}"
-			labelSpanXL="3" labelSpanL="3"
-			labelSpanM="3" labelSpanS="12"
-			adjustLabelSpan="false" emptySpanXL="4"
-			emptySpanL="4" emptySpanM="4" emptySpanS="0"
-            columnsXL="1" columnsL="1" columnsM="1"
-			singleContainerFullSize="false" >
-			<f:content>
-				<Label text="{i18n>proveedorN}" />
-				<Text id="nameText" text="{CompanyName}" />
-
-				<Label text="{i18n>direccionC}" />
-				<Text text="{Street} {Address}" />
-
-				<Label text="{i18n>regionP}" />
-				<Text text="{Region}" />
-
-                <Label text="{i18n>ciudadP}" />
-				<Text text="{City}" />
-
-				<Label text="{i18n>paisP}" />
-				<Text id="countryText" text="{Country}" />
-
-                <Label text="{i18n>telefonoP}" />
-				<Text  text="{Phone}" />
-
-                <Label text="{i18n>faxP}" />
-				<Text  text="{Fax}" />
-
-                <Label text="{i18n>cPostal}" />
-				<Text  text="{PostalCode}" />
-
-                <Label text="{i18n>paginaP}" />
-				<Text  text="{HomePage}" />
-			</f:content>
-		</f:SimpleForm>
-
-        <smartTable:SmartTable
-            entitySet="Products"
-            tableBindingPath="Products"
-            initiallyVisibleFields="ProductID,ProductName,SupplierID,CategoryID,QuantityPerUnit, UnitPrice,UnitsInStock,UnitsInOrder,ReorderLevel,Discontinued,Category,Order_details,Supplier"
-            tableType="ResponsiveTable"
-            enableExport="true"
-            useVariantManagement="false"
-            useTablePersonalisation="true"
-            header="{i18n>detalleProducto}"
-            showRowCount="true"
-            showFullScreenButton="true"
-            enableAutoBinding="true"
-            class="sapUiResponsiveContentPadding"
-            enableAutoColumnWidth="true"
-            editTogglable="false" >
-            <smartTable:customToolbar>
-            </smartTable:customToolbar>
-        </smartTable:SmartTable>
-    </VBox>
+        <VBox>
+            <f:SimpleForm id="SimpleFormDisplay354"
+                editable="false"
+                layout="ResponsiveGridLayout"
+                title="{i18n>informacion}"
+                labelSpanXL="3" labelSpanL="3"
+                labelSpanM="3" labelSpanS="12"
+                adjustLabelSpan="false" emptySpanXL="4"
+                emptySpanL="4" emptySpanM="4" emptySpanS="0"
+                columnsXL="1" columnsL="1" columnsM="1"
+                singleContainerFullSize="false" >
+                <f:content>
+                    <Label text="{i18n>proveedorN}" />
+                    <Text id="nameText" text="{CompanyName}" />
+                    <Label text="{i18n>direccionC}" />
+                    <Text text="{Street} {Address}" />
+                    <Label text="{i18n>regionP}" />
+                    <Text text="{Region}" />
+                    <Label text="{i18n>ciudadP}" />
+                    <Text text="{City}" />
+                    <Label text="{i18n>paisP}" />
+                    <Text id="countryText" text="{Country}" />
+                    <Label text="{i18n>telefonoP}" />
+                    <Text  text="{Phone}" />
+                    <Label text="{i18n>faxP}" />
+                    <Text  text="{Fax}" />
+                    <Label text="{i18n>cPostal}" />
+                    <Text  text="{PostalCode}" />
+                    <Label text="{i18n>paginaP}" />
+                    <Text  text="{HomePage}" />
+                </f:content>
+            </f:SimpleForm>
+            <smartTable:SmartTable
+                entitySet="Products"
+                tableBindingPath="Products"
+                initiallyVisibleFields="ProductID,ProductName,SupplierID,CategoryID,QuantityPerUnit, UnitPrice,UnitsInStock,UnitsInOrder,ReorderLevel,Discontinued,Category,Order_details,Supplier"
+                tableType="ResponsiveTable"
+                enableExport="true"
+                useVariantManagement="false"
+                useTablePersonalisation="true"
+                header="{i18n>detalleProducto}"
+                showRowCount="true"
+                showFullScreenButton="true"
+                enableAutoBinding="true"
+                class="sapUiResponsiveContentPadding"
+                enableAutoColumnWidth="true"
+                editTogglable="false" >
+                <smartTable:customToolbar>
+                    <Toolbar>
+                        <ToolbarSpacer/>
+                        <Button text="Abrir Diálogo" press="onOpenDialog" />
+                    </Toolbar>
+                </smartTable:customToolbar>
+            </smartTable:SmartTable>
+            <Dialog id="myDialog" title="Mi Diálogo">
+                <content>
+                    <Text text="Contenido del diálogo." />
+                </content>
+                <buttons>
+                    <Button text="Cerrar" press="onCloseDialog" />
+                </buttons>
+            </Dialog>
+        </VBox>
     </Page>
 </mvc:View>
