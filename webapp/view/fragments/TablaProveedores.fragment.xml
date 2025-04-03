@@ -8,13 +8,15 @@
             <ToolbarSpacer/>
             <Button
                 id="sortAscButton"
-                text="{i18n>ordenarAscendente}"
+                text="{i18n>ordenarA}"
                 press=".onSortAscending"
+                icon="sap-icon://drill-up"
             />
             <Button
                 id="sortDescButton"
-                text="{i18n>ordenarDescendente}"
+                text="{i18n>ordenarD}"
                 press=".onSortDescending"
+                icon = "sap-icon://drill-down"
             />
         </Toolbar>
         <Table

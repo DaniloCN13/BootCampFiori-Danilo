@@ -71,10 +71,6 @@
                 </MultiInput>
             </VBox>
         </HBox>
-        <Button
-            text="{i18n>consulta}"
-            press="onPress"
-            class="sapUiSmallMarginTop"
-        />
+        
     </HBox>
 </c:FragmentDefinition>

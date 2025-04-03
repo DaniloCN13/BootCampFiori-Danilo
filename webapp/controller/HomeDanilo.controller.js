@@ -2,9 +2,10 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "com/bootcamp/sapui5/project/utils/HomeHelper",
     "sap/ui/model/Filter",
-    "sap/ui/model/FilterOperator"
+    "sap/ui/model/FilterOperator",
+    "sap/ui/model/Sorter"
 
-], (Controller, HomeHelper, Filter, FilterOperator) => {
+], (Controller, HomeHelper, Filter, FilterOperator, Sorter) => {
     "use strict";
 
     return Controller.extend("com.bootcamp.sapui5.project.controller.HomeDanilo", {
@@ -93,7 +94,21 @@ sap.ui.define([
             }
         
         
-},
+            },
+            onSortAscending: function () {
+                this.sortSuppliers("SupplierID", false);
+            },
+
+            onSortDescending: function () {
+                this.sortSuppliers("SupplierID", true);
+            },
+
+            sortSuppliers: function (sPath, bDescending) {
+                let oTable = this.byId("idSupplier");
+                let oBinding = oTable.getBinding("items");
+                let oSorter = new Sorter(sPath, bDescending);
+                oBinding.sort(oSorter);
+            },
         
     });
 });

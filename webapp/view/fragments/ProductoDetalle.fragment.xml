@@ -24,8 +24,8 @@
                 singleContainerFullSize="false"
             >
                 <f:content>
-                    <Label text="{i18n>productID}" />
-                    <Text text="{ProductID}" />
+                    <Label text="{i18n>productID}"  />
+                    <Text text="{ProductID}"/>
                     <Label text="{i18n>nombreP}" />
                     <Text text="{ProductName}" />
                     <Label text="{i18n>precioP}" />
