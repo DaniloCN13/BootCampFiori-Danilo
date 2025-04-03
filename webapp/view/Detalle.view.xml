@@ -15,10 +15,11 @@
                 adjustLabelSpan="false" emptySpanXL="4"
                 emptySpanL="4" emptySpanM="4" emptySpanS="0"
                 columnsXL="1" columnsL="1" columnsM="1"
-                singleContainerFullSize="false" >
+                singleContainerFullSize="false"
+                 >
                 <f:content>
-                    <Label text="{i18n>proveedorN}" />
-                    <Text id="nameText" text="{CompanyName}" />
+                    <Label text="{i18n>nombreP}" />
+                    <Text  text="{CompanyName}" />
                     <Label text="{i18n>direccionC}" />
                     <Text text="{Street} {Address}" />
                     <Label text="{i18n>regionP}" />
@@ -35,6 +36,7 @@
                     <Text text="{PostalCode}" />
                     <Label text="{i18n>paginaP}" />
                     <Text text="{HomePage}" />
+                  
                 </f:content>
             </f:SimpleForm>
             <smartTable:SmartTable
@@ -59,7 +61,7 @@
                     </Toolbar>
                 </smartTable:customToolbar>
             </smartTable:SmartTable>
-            <Dialog id="myDialog" title="{i18n>productoN}">
+            <Dialog id="myDialog" title="{i18n>productoN}" >
               <content>
                   <VBox>
                       <Label text="{i18n>nombreP} *" class="requiredLabel" />

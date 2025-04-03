@@ -5,8 +5,9 @@ sap.ui.define([
     "sap/m/Text",
     "sap/m/Button",
     "sap/m/Input",
-     "sap/m/MessageToast"
-], (Controller, HomeHelper, Dialog, Text, Button, Input, MessageToast) => {
+    "sap/m/MessageToast",
+    "sap/ui/core/Fragment" 
+], (Controller, HomeHelper, Dialog, Text, Button, Input, MessageToast, Fragment) => {
     "use strict";
 
     return Controller.extend("com.bootcamp.sapui5.project.controller.Detalle", {
@@ -29,29 +30,28 @@ sap.ui.define([
         onOpenDialog: function () {
             let oDialog = this.byId("myDialog");
             if (!oDialog) {
-                const oResourceBundle = this.getView().getModel("i18n").getResourceBundle(); // Obtén el recurso i18n
-        
+                const oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
                 oDialog = new Dialog({
-                    title: oResourceBundle.getText("{dialognoTitle}"), // Usar i18n para el título
+                    title: oResourceBundle.getText("{dialognoTitle}"),
                     content: [
                         new VBox({
                             items: [
-                                new Label({ text: oResourceBundle.getText("nombreProducto") }), // Usar i18n para el nombre del producto
+                                new Label({ text: oResourceBundle.getText("nombreProducto") }),
                                 new Input("productNameInput"),
-                                new Label({ text: oResourceBundle.getText("precio") }), // Usar i18n para el precio
+                                new Label({ text: oResourceBundle.getText("precio") }),
                                 new Input("productPriceInput", { type: "Number" }),
-                                new Label({ text: oResourceBundle.getText("cantidadStock") }), // Usar i18n para la cantidad en stock
+                                new Label({ text: oResourceBundle.getText("cantidadStock") }),
                                 new Input("productStockInput", { type: "Number" })
                             ]
                         })
                     ],
                     buttons: [
                         new Button({
-                            text: oResourceBundle.getText("guardar"), // Usar i18n para el botón guardar
+                            text: oResourceBundle.getText("guardar"),
                             press: this.onSaveProduct.bind(this)
                         }),
                         new Button({
-                            text: oResourceBundle.getText("cerrar"), // Usar i18n para el botón cerrar
+                            text: oResourceBundle.getText("cerrar"),
                             press: this.onCloseDialog.bind(this)
                         })
                     ]
@@ -68,60 +68,86 @@ sap.ui.define([
             }
         },
 
-        onSaveProduct: function() {
-         
+        onSaveProduct: function () {
             const productName = this.byId("productNameInput").getValue();
             const productPrice = this.byId("productPriceInput").getValue();
             const productStock = this.byId("productStockInput").getValue();
 
-         
-           // Validar campos obligatorios
-                if (!productName) {
-                    MessageToast.show(this.getView().getModel("i18n").getResourceBundle().getText(`Error: ${i18n>precioP}`)); // Mensaje de error
-                    return; // Salir si hay error
-                }
-                if (!productPrice) {
-                    MessageToast.show(this.getView().getModel("i18n").getResourceBundle().getText("errorPrecioRequerido")); // Mensaje de error
-                    return; // Salir si hay error
-                }
-                if (!productStock) {
-                    MessageToast.show(this.getView().getModel("i18n").getResourceBundle().getText("errorCantidadRequerida")); // Mensaje de error
-                    return; // Salir si hay error
-                }
+            if (!productName) {
+                MessageToast.show(this.getView().getModel("i18n").getResourceBundle().getText("errorN"));
+                return;
+            }
+            if (!productPrice) {
+                MessageToast.show(this.getView().getModel("i18n").getResourceBundle().getText("errorP"));
+                return;
+            }
+            if (!productStock) {
+                MessageToast.show(this.getView().getModel("i18n").getResourceBundle().getText("errorC"));
+                return;
+            }
 
-            MessageToast.show(`Producto guardado: ${productName}, Precio: ${productPrice}, Stock: ${productStock}`)
-
-          
+            let sMessage = this.getView().getModel("i18n").getResourceBundle().getText("productoG");
+            MessageToast.show(sMessage);
             this.onCloseDialog();
         },
-        onRowSelectionChange: function(oEvent) {
-            // Obtener la fila seleccionada
+
+        onRowSelectionChange: function (oEvent) {
             const oSelectedItem = oEvent.getParameter("rowContext");
             if (oSelectedItem) {
-                const oProduct = oSelectedItem.getObject(); // Obtener los datos del producto
-        
-                // Aquí puedes mostrar los detalles del producto en el Diálogo
+                const oProduct = oSelectedItem.getObject();
                 this.showProductDetails(oProduct);
             }
         },
-        
-        showProductDetails: function(oProduct) {
+
+        showProductDetails: function (oProduct) {
             const oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
-            
-            // Establecer los valores en los campos del diálogo, si ya lo tienes definido en tu HTML
             const oDialog = this.byId("myDialog");
-            
+
             this.byId("productNameInput").setValue(oProduct.ProductName);
             this.byId("productPriceInput").setValue(oProduct.UnitPrice);
             this.byId("productStockInput").setValue(oProduct.UnitsInStock);
-        
-            // Abrir el diálogo con los detalles
+
             if (!oDialog) {
-                // (Crear el diálogo aquí o asegurarte que esté definido)
-                this.onOpenDialog(); // Llama a una función que abra el diálogo
+                this.onOpenDialog();
             } else {
-                oDialog.open(); // Si ya existe, abrirlo
+                oDialog.open();
             }
+        },
+
+        onSelectionChange: function (oEvent) {
+            let oTable = oEvent.getSource();
+            let aSelectedItems = oTable.getSelectedContexts();
+            this._selectedProducts = aSelectedItems.map(function (oContext) {
+                return oContext.getObject();
+            });
+            console.log("Selected Products:", this._selectedProducts);
+        },
+
+        onSelectProducts: function () {
+            if (this._selectedProducts && this._selectedProducts.length > 0) {
+                console.log("Productos seleccionados:", this._selectedProducts);
+            } else {
+                MessageToast.show("Por favor, seleccione al menos un producto.");
+            }
+        },
+
+        onSortAscending: function () {
+            this.sortSuppliers("SupplierID", false);
+        },
+
+        onSortDescending: function () {
+            this.sortSuppliers("SupplierID", true);
+        },
+
+        sortSuppliers: function (sPath, bDescending) {
+            let oTable = Fragment.byId("SupplierTable", "idSupplier");
+            let oBinding = oTable.getBinding("items");
+            let oSorter = new sap.ui.model.Sorter(sPath, bDescending);
+            oBinding.sort(oSorter);
+        },
+
+        byId: function (sId) {
+            return this.getView().byId(sId);
         }
     });
 });

@@ -1,55 +1,73 @@
-<c:FragmentDefinition
+<mvc:View
+    controllerName="com.bootcamp.sapui5.project.controller.Detalle"
     xmlns="sap.m"
-    xmlns:c="sap.ui.core"
-    xmlns:u="sap.ui.unified"
-    
-    
-
+    xmlns:mvc="sap.ui.core.mvc"
 >
-    <Table
-        id="idSupplier"
-        inset="false"
-        items="{
-            path: 'ListadoProveedores>/'
-        }">
-        <columns>
-            <Column>
-                <Text text="{i18n>idProveedor}" />
-            </Column>
-            <Column>
-                <Text text="{i18n>proveedorN}" />
-            </Column>
-            <Column>
-                <Text text="{i18n>contactoP}" />
-            </Column>
-            <Column>
-                <Text text="{i18n>contactoT}" />
-            </Column>
-             <Column>
-                <Text text="{i18n>paisP}" />
-            </Column>
-             <Column>
-                <Text text="{i18n>telefonoP}" />
-            </Column>
-        </columns>
-        <items>
-            <ColumnListItem  vAlign="Middle" type="Active" press="onItemPress">
-                <cells>
-                    <ObjectIdentifier
-                        title="{ListadoProveedores>SupplierID}"
+    <VBox>
+        <Toolbar>
+            <ToolbarSpacer/>
+            <Button
+                id="sortAscButton"
+                text="{i18n>ordenarAscendente}"
+                press=".onSortAscending"
+            />
+            <Button
+                id="sortDescButton"
+                text="{i18n>ordenarDescendente}"
+                press=".onSortDescending"
+            />
+        </Toolbar>
+        <Table
+            id="idSupplier"
+            inset="false"
+            items="{
+                path: 'ListadoProveedores>/'
+            }"
+        >
+            <columns>
+                <Column>
+                    <Text text="{i18n>idProveedor}" />
+                </Column>
+                <Column>
+                    <Text text="{i18n>proveedorN}" />
+                </Column>
+                <Column>
+                    <Text text="{i18n>contactoP}" />
+                </Column>
+                <Column>
+                    <Text text="{i18n>contactoT}" />
+                </Column>
+                <Column>
+                    <Text text="{i18n>paisP}" />
+                </Column>
+                <Column>
+                    <Text text="{i18n>telefonoP}" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem vAlign="Middle" type="Active" press="onItemPress">
+                    <cells>
+                        <ObjectIdentifier
+                            title="{ListadoProveedores>SupplierID}"
                         />
-                    <Text
-                        text="{ListadoProveedores>CompanyName}" />
-                    <Text
-                        text="{ListadoProveedores>ContactName}" />
-                    <Text
-                        text="{ListadoProveedores>ContactTitle}" />
-                    <Text
-                        text="{ListadoProveedores>Country}" />
-                    <Text
-                        text="{ListadoProveedores>Phone}" />
-                </cells>
-            </ColumnListItem>
-        </items>
-    </Table>
-</c:FragmentDefinition>
+                        <Text
+                            text="{ListadoProveedores>CompanyName}"
+                        />
+                        <Text
+                            text="{ListadoProveedores>ContactName}"
+                        />
+                        <Text
+                            text="{ListadoProveedores>ContactTitle}"
+                        />
+                        <Text
+                            text="{ListadoProveedores>Country}"
+                        />
+                        <Text
+                            text="{ListadoProveedores>Phone}"
+                        />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </VBox>
+</mvc:View>
